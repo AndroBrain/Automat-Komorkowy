@@ -31,7 +31,7 @@ free_matrix (matrix_t * m)
 }
 
 	void
-put_entry_matrix (matrix_t * m, int i, int j, double val)
+put_entry_matrix (matrix_t * m, int i, int j, int val)
 {
 	if (i >= 0 && i < m->rn && j >= 0 && j <= m->cn)
 		m->e[i * m->cn + j] = val;
@@ -44,7 +44,7 @@ add_to_entry_matrix (matrix_t * m, int i, int j, double val)
 		m->e[i * m->cn + j] += val;
 }
 
-double
+int
 get_entry_matrix (matrix_t * m, int i, int j )
 {
 	if (i >= 0 && i < m->rn && j >= 0 && j <= m->cn)
@@ -65,7 +65,7 @@ read_matrix (FILE * in)
 		return NULL;
 	for (i = 0; i < rn; i++)
 		for (j = 0; j < cn; j++)
-			if (fscanf (in, "%lf", &new_mat->e[i * cn + j]) != 1) {
+			if (fscanf (in, "%d", &new_mat->e[i * cn + j]) != 1) {
 				free_matrix (new_mat);
 				return NULL;
 			}
@@ -85,8 +85,8 @@ write_matrix (matrix_t * m, FILE * out)
 	fprintf (out, "%d %d\n", m->rn, m->cn);
 	for (i = 0; i < m->rn; i++) {
 		for (j = 0; j < m->cn - 1; j++)
-			fprintf (out, "%8.5f ", m->e[i * m->cn + j]);
-		fprintf (out, "%8.5f\n", m->e[i * m->cn + j]);
+			fprintf (out, "%d ", m->e[i * m->cn + j]);
+		fprintf (out, "%d\n", m->e[i * m->cn + j]);
 	}
 }
 

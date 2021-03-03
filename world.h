@@ -3,7 +3,7 @@
 typedef struct {
 	int rn;
 	int cn;
-	double *e;
+	int *e;
 } matrix_t;
 
 void free_matrix( matrix_t * );
@@ -14,8 +14,8 @@ matrix_t * read_matrix( FILE *in );
 
 void write_matrix( matrix_t *, FILE *out );
 
-void put_entry_matrix( matrix_t *, int i, int j, double val );
+void put_entry_matrix( matrix_t *, int i, int j, int val );
 
 void add_to_entry_matrix( matrix_t *, int i, int j, double val );
 
-double get_entry_matrix( matrix_t *, int i, int j );
+int get_entry_matrix( matrix_t *, int i, int j );
