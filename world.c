@@ -7,6 +7,8 @@
 matrix_t *
 make_matrix (int rn, int cn)
 {
+	if( rn <= 0 || cn <= 0 )
+		return NULL;
 	matrix_t *new_mat = malloc (sizeof *new_mat);
 	if (new_mat == NULL)
 		return NULL;
@@ -59,7 +61,6 @@ read_matrix (FILE * in)
 	matrix_t *new_mat;
 	if (fscanf (in, "%d %d", &rn, &cn) != 2)
 		return NULL;
-
 	if ((new_mat = make_matrix (rn, cn)) == NULL)
 		return NULL;
 	for (i = 0; i < rn; i++)
