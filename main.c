@@ -6,8 +6,8 @@
 // 0 - dead
 // 1 - alive
 // 2 - dying
-// 3 - being born
-void update( matrix_t *mat, int row, int column, int alive) {
+// 3 - breed
+void breedAndKill( matrix_t *mat, int row, int column, int alive) {
 	int actualState = get_entry_matrix( mat, row, column );
 	if( actualState == 0 )
 		if( alive == 3 )
@@ -28,7 +28,7 @@ void neumann(matrix_t *mat, int row, int column){
 					alive++;
 				}
 			}
-	update( mat, row, column, alive);
+	breedAndKill( mat, row, column, alive);
 }
 
 int main(int argc, char **argv) {
