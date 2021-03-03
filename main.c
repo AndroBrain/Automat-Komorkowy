@@ -7,6 +7,16 @@
 // 1 - alive
 // 2 - dying
 // 3 - being born
+void update( matrix_t *mat, int row, int column, int alive) {
+	int actualState = get_entry_matrix( mat, row, column );
+	if( actualState == 0 )
+		if( alive == 3 )
+			put_entry_matrix( mat, row, column, 3);
+	if( actualState == 1 )
+		if( alive != 2 || alive != 3 )
+			put_entry_matrix( mat, row, column, 2);
+
+}
 
 void neumann(matrix_t *mat, int row, int column){
 	int alive = 0;
@@ -15,18 +25,10 @@ void neumann(matrix_t *mat, int row, int column){
 			if( r >= 0 && r < mat->rn && c >= 0 && c < mat->cn && ( r != row || c != column)) {
 				int state = get_entry_matrix( mat, r, c);	
 				if( state == 1 || state == 2) {
-					printf("FOUND alive in row: %d column: %d\n", r, c);
 					alive++;
 				}
 			}
-	printf("Alive: %d\n", alive);
-	int actualState = get_entry_matrix( mat, row, column );
-	if( actualState == 0 )
-		if( alive == 3 )
-			put_entry_matrix( mat, row, column, 3);
-	if( actualState == 1 )
-		if( alive != 2 || alive != 3 )
-			put_entry_matrix( mat, row, column, 2);
+	update( mat, row, column, alive);
 }
 
 int main(int argc, char **argv) {
