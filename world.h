@@ -1,9 +1,9 @@
-#include<stdlib.h>
+#include <stdlib.h>
 
 typedef struct {
 	int rn;
 	int cn;
-	double *world;
+	double *e;
 } matrix_t;
 
 void free_matrix( matrix_t * );

@@ -10,6 +10,10 @@ int main(int argc, char **argv) {
 	** argv[2] == Neumann lub N
 	** to jest 4 wokół BEZ przekątnych
 	*/
+	matrix_t *mat;
+	if( argc > 0 ) 
+		mat = read_matrix( fopen(argv[1], "r") );
+	write_matrix( mat, stdout );
 
 
 	return 0;

@@ -1,5 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
+#include "world.h"
+
 matrix_t *
 make_matrix (int rn, int cn)
 {
@@ -38,14 +42,6 @@ add_to_entry_matrix (matrix_t * m, int i, int j, double val)
 		m->e[i * m->cn + j] += val;
 }
 
-	double
-get_entry_matrix (matrix_t * m, int i, int j )
-{
-	if (i >= 0 && i < m->rn && j >= 0 && j <= m->cn)
-		return m->e[i * m->cn + j];
-	else
-		return -999;
-}
 double
 get_entry_matrix (matrix_t * m, int i, int j )
 {
