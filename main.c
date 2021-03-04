@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "world.h"
+#include "mat.h"
 
 // 0 - dead
 // 1 - alive

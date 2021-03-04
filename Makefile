@@ -1,2 +1,2 @@
-cell: main.o world.o
-	$(CC) -o cell main.o world.o
+cell: main.o mat.o
+	$(CC) -o cell main.o mat.o
