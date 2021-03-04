@@ -11,7 +11,7 @@
 void breedAndKill( matrix_t *mat, int row, int column, int alive );
 void moor( matrix_t *mat, int row, int column );
 void neumann( matrix_t *mat, int row, int column );
-void createPbmFile( matrix_t *mat, char fileName[40], int number );
+void createPbmFile( matrix_t *mat, int number );
 int isAlive( int state );
 void fix_world(matrix_t *mat);
 
@@ -24,17 +24,13 @@ int main(int argc, char **argv) {
 	 ** podanie ilości iteracji
 	 */
 	matrix_t *mat;
+
 	if( argc > 0 ) 
 		mat = read_matrix( fopen(argv[1], "r") );
 
-	write_matrix( mat, stdout );
-
 	moor( mat, 0, 0 );
 	fix_world( mat );
-	char fileName[40] = "output";
-	createPbmFile( mat, fileName, 1 );
 
-	write_matrix( mat, stdout );
 	return 0;
 }
 
@@ -73,8 +69,9 @@ void breedAndKill( matrix_t *mat, int row, int column, int alive) {
 			put_entry_matrix( mat, row, column, 2);
 }
 
-void createPbmFile( matrix_t *mat, char fileName[40], int number ){
-	snprintf(fileName, sizeof fileName, "output%d.pbm", number);
+void createPbmFile( matrix_t *mat, int number ){
+	char fileName[40];
+	snprintf(fileName, sizeof fileName, "outputs/output%d.pbm", number);
 	
 	FILE *out = fopen( fileName, "wb" );
 	fprintf( out, "P1\n" );
