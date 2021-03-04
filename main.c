@@ -17,13 +17,12 @@ void fix_world(matrix_t *mat);
 int main(int argc, char **argv) {
 	matrix_t *mat;
 	int numberOfIterations;
-	
+	if ( argc < 2 ) {
+		fprintf( stderr, "Not enough arguments, 1.File name\n2.Number of Iterations\n" );
+		return 1;
+	}	
 
-	if( argc > 0 ) 
-		mat = read_matrix( fopen(argv[1], "r") );
-	else 
-		fprintf( stderr, "First argument must be name of a file with matrix");
-
+	mat = read_matrix( fopen(argv[1], "r") );
 	numberOfIterations = atoi(argv[2]);
 
 	for( int n = 1; n <= numberOfIterations; n++ ){
@@ -58,7 +57,7 @@ int isAlive( int state ){
 
 void breedAndKill( matrix_t *mat, int row, int column, int alive) {
 	int actualState = get_entry_matrix( mat, row, column );
-	
+
 	if( actualState == 0 )
 		if( alive == 3 )
 			put_entry_matrix( mat, row, column, 3);
