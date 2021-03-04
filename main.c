@@ -31,7 +31,7 @@ int main(int argc, char **argv) {
 
 	moor( mat, 0, 0 );
 	fix_world( mat );
-
+	char fileName[40] = "output"
 	//	createPbmFile( mat, fileName );
 
 	write_matrix( mat, stdout );
@@ -73,7 +73,9 @@ void breedAndKill( matrix_t *mat, int row, int column, int alive) {
 			put_entry_matrix( mat, row, column, 2);
 }
 
-void createPbmFile( matrix_t *mat, char *fileName ){
+void createPbmFile( matrix_t *mat, char fileName[40], int number ){
+	int k;
+	k = snprintf(filename, sizeof filename, "output%d.pbm", number);
 	FILE *out = fopen( fileName, "wb" );
 	fprintf( out, "P1\n" );
 	fprintf( out, "%d %d\n", mat->rn, mat->cn );
