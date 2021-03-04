@@ -13,7 +13,7 @@ void moor( matrix_t *mat, int row, int column );
 void neumann( matrix_t *mat, int row, int column );
 void createPbmFile( matrix_t *mat, char *fileName );
 int isAlive( int state );
-matrix_t fix_world(matrix_t mat);
+void fix_world(matrix_t *mat);
 
 int main(int argc, char **argv) {
 	/* Opcje
@@ -30,6 +30,7 @@ int main(int argc, char **argv) {
 	write_matrix( mat, stdout );
 
 	moor( mat, 0, 0 );
+	fix_world( mat );
 
 	//	createPbmFile( mat, fileName );
 
@@ -84,14 +85,13 @@ void createPbmFile( matrix_t *mat, char *fileName ){
 	}
 }
 
-matrix_t fix_world(matrix_t mat){
-	for(int i = 0; i < mat->rn; i++){
-		for(int j = 0; mat->cn; i++){
-			if(mat->e[mat->cn*i+j] == 2)
-				mat->e[mat->cn*i+j] = 0;
-			else if(mat->e[mat->cn*i+j] == 3)
-				mat->e[mat->cn*i+j] = 1;
+void fix_world(matrix_t *mat){
+	for ( int r = 0; r < mat->rn; r++ )
+		for ( int c = 0; c < mat->cn; c++ ){
+			if ( get_entry_matrix( mat, r, c ) == 2 )
+				put_entry_matrix( mat, r, c, 0 );
+			else if ( get_entry_matrix( mat, r , c ) == 3 )
+				put_entry_matrix( mat, r, c, 1 );
 		}
-	}
-	return mat;
+
 }
