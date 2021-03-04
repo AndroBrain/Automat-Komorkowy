@@ -28,7 +28,7 @@ int main(int argc, char **argv) {
 
 	write_matrix( mat, stdout );
 
-	neumann( mat, 1, 3 );
+	moor( mat, 0, 0 );
 
 //	createPbmFile( mat, fileName );
 
