@@ -10,26 +10,31 @@
 
 void breedAndKill( matrix_t *mat, int row, int column, int alive );
 void moor( matrix_t *mat, int row, int column );
-void neumann( matrix_t *mat, int row, int column );
 void createPbmFile( matrix_t *mat, int number );
 int isAlive( int state );
 void fix_world(matrix_t *mat);
 
 int main(int argc, char **argv) {
-	/* Opcje
-	 ** argv[2] == Moor lub M
-	 ** to jest 8 wokół z przekątnymi
-	 ** argv[2] == Neumann lub N
-	 ** to jest 4 wokół BEZ przekątnych
-	 ** podanie ilości iteracji
-	 */
 	matrix_t *mat;
+	int numberOfIterations;
+	
 
 	if( argc > 0 ) 
 		mat = read_matrix( fopen(argv[1], "r") );
+	else 
+		fprintf( stderr, "First argument must be name of a file with matrix");
 
-	moor( mat, 0, 0 );
-	fix_world( mat );
+	numberOfIterations = atoi(argv[2]);
+
+	for( int n = 1; n <= numberOfIterations; n++ ){
+		createPbmFile( mat, n );
+		for ( int r = 0; r < mat->rn; r++ )
+			for ( int c = 0; c < mat->cn; c++ )
+				moor( mat, r, c );
+
+		fix_world( mat );
+	}
+	createPbmFile( mat, numberOfIterations );
 
 	return 0;
 }
@@ -44,14 +49,6 @@ void moor(matrix_t *mat, int row, int column){
 	breedAndKill( mat, row, column, alive);
 }
 
-void neumann( matrix_t *mat, int row, int column ){
-	int alive = 0;
-	if ( row - 1 >= 0 && column - 1 >=0 ) {
-		int state = get_entry_matrix( mat, row - 1, column - 1 );
-
-	}
-}
-
 int isAlive( int state ){
 	if( state == 1 || state == 2) {
 		return 1;
@@ -61,18 +58,20 @@ int isAlive( int state ){
 
 void breedAndKill( matrix_t *mat, int row, int column, int alive) {
 	int actualState = get_entry_matrix( mat, row, column );
+	
 	if( actualState == 0 )
 		if( alive == 3 )
 			put_entry_matrix( mat, row, column, 3);
+
 	if( actualState == 1 )
-		if( alive != 2 || alive != 3 )
+		if( alive != 2 && alive != 3 )
 			put_entry_matrix( mat, row, column, 2);
 }
 
 void createPbmFile( matrix_t *mat, int number ){
 	char fileName[40];
 	snprintf(fileName, sizeof fileName, "outputs/output%d.pbm", number);
-	
+
 	FILE *out = fopen( fileName, "wb" );
 	fprintf( out, "P1\n" );
 	fprintf( out, "%d %d\n", mat->rn, mat->cn );
