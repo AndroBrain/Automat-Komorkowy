@@ -1,2 +1,2 @@
 
-void iterate( char* fileName, int numberOfIterations );
+void makeAutomata( char* fileName, int numberOfIterations );

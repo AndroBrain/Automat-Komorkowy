@@ -17,7 +17,7 @@ int main(int argc, char **argv) {
 	int numberOfIterations = atoi(argv[2]);
 	char *fileName = argv[1];
 	
-	iterate( fileName, numberOfIterations );
+	makeAutomata( fileName, numberOfIterations );
 
 	return 0;
 }

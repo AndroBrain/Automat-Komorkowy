@@ -13,7 +13,7 @@ void fix_world(matrix_t *mat){
 
 }
 
-void iterate ( char *fileName, int numberOfIterations ) {
+void makeAutomata ( char *fileName, int numberOfIterations ) {
 	matrix_t *mat = read_matrix( fopen(fileName, "r") );
 	for( int n = 1; n <= numberOfIterations; n++ ){
 		createPbmFile( mat, n );
