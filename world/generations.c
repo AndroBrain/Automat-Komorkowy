@@ -31,7 +31,7 @@ void makeAutomata ( char *fileName, int numberOfIterations ) {
 		createPbmFile( mat, n );
 		for ( int r = 0; r < mat->rn; r++ )
 			for ( int c = 0; c < mat->cn; c++ )
-				moor( mat, r, c );
+				neumann( mat, r, c );
 
 		fix_world( mat );
 	}
