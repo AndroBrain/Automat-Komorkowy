@@ -33,6 +33,13 @@ void makeAutomata ( char *fileName, int numberOfIterations ) {
 			for ( int c = 0; c < mat->cn; c++ )
 				neumann( mat, r, c );
 
+			for ( int c = 0; c < mat->cn; c++ ) {
+#ifdef NEUMANN	
+				neumann( mat, r, c );
+#else
+				moor( mat, r, c );
+#endif
+			}
 		fix_world( mat );
 	}
 	createPbmFile( mat, numberOfIterations );
