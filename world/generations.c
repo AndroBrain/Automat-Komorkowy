@@ -30,9 +30,6 @@ void makeAutomata ( char *fileName, int numberOfIterations ) {
 	for( int n = 1; n <= numberOfIterations; n++ ){
 		createPbmFile( mat, n );
 		for ( int r = 0; r < mat->rn; r++ )
-			for ( int c = 0; c < mat->cn; c++ )
-				neumann( mat, r, c );
-
 			for ( int c = 0; c < mat->cn; c++ ) {
 #ifdef NEUMANN	
 				neumann( mat, r, c );
