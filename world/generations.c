@@ -28,7 +28,7 @@ void makeAutomata ( char *fileName, int numberOfIterations ) {
 		handleFileError();
 
 	for( int n = 1; n <= numberOfIterations; n++ ){
-		createPbmFile( mat, n );
+		save( mat, n );
 		for ( int r = 0; r < mat->rn; r++ )
 			for ( int c = 0; c < mat->cn; c++ ) {
 #ifdef NEUMANN	
@@ -39,6 +39,6 @@ void makeAutomata ( char *fileName, int numberOfIterations ) {
 			}
 		fix_world( mat );
 	}
-	createPbmFile( mat, numberOfIterations );
+	save( mat, numberOfIterations );
 	free_matrix(mat);
 }

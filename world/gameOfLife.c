@@ -1,3 +1,4 @@
+#include "mat.h"
 #include "games.h"
 //Jeśli martwa komórka otoczona przez 3 żywe to rodzi się
 //Jeśli żywa komórka otoczona przez mniej niż 2 żywe i więcej niż 3 żywe to umiera
