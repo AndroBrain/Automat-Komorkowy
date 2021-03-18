@@ -1,7 +1,7 @@
 #include <stdlib.h>
 
 #include "mat.h"
-
+//przerzucic breedandkilla do innego folderu i nazwac game of life 
 void breedAndKill( matrix_t *mat, int row, int column, int alive) {
 	int actualState = get_entry_matrix( mat, row, column );
 
