@@ -4,8 +4,7 @@
 
 #include "mat.h"
 
-matrix_t *
-make_matrix (int rn, int cn)
+matrix_t *make_matrix (int rn, int cn)
 {
 	if( rn <= 0 || cn <= 0 )
 		return NULL;
@@ -23,29 +22,25 @@ make_matrix (int rn, int cn)
 	return new_mat;
 }
 
-	void
-free_matrix (matrix_t * m)
+void free_matrix (matrix_t * m)
 {
 	free (m->e);
 	free (m);
 }
 
-	void
-put_entry_matrix (matrix_t * m, int i, int j, int val)
+void put_entry_matrix (matrix_t * m, int i, int j, int val)
 {
 	if (i >= 0 && i < m->rn && j >= 0 && j <= m->cn)
 		m->e[i * m->cn + j] = val;
 }
 
-	void
-add_to_entry_matrix (matrix_t * m, int i, int j, double val)
+void add_to_entry_matrix (matrix_t * m, int i, int j, double val)
 {
 	if (i >= 0 && i < m->rn && j >= 0 && j <= m->cn)
 		m->e[i * m->cn + j] += val;
 }
 
-int
-get_entry_matrix (matrix_t * m, int i, int j )
+int get_entry_matrix (matrix_t * m, int i, int j )
 {
 	if (i >= 0 && i < m->rn && j >= 0 && j <= m->cn)
 		return m->e[i * m->cn + j];
@@ -53,8 +48,7 @@ get_entry_matrix (matrix_t * m, int i, int j )
 		return -999;
 }
 
-	matrix_t *
-read_matrix (FILE * in)
+matrix_t *read_matrix (FILE * in)
 {
 	int rn, cn;
 	int i, j;

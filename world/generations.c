@@ -40,4 +40,5 @@ void makeAutomata ( char *fileName, int numberOfIterations ) {
 		fix_world( mat );
 	}
 	createPbmFile( mat, numberOfIterations );
+	free_matrix(mat);
 }

@@ -8,9 +8,7 @@ savingFiles/output.o:
 	$(CC) -c world/generations.c
 world/generations.o:
 	$(CC) -c world/mat.c world/neighbourhood.c savingFiles/output.c
-world/neighbourhood.o:
-	$(CC) -c world/mat.c
 world/mat.o:
 	$(CC) -c world/mat.c
 clean:
-	rm *.o moor neumann
+	rm *.o moor neumann outputs/*.pbm
