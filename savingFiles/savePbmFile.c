@@ -1,4 +1,4 @@
-#include "output.h"
+#include "savePbmFile.h"
 
 void savePbmFile( matrix_t *mat, int number ){
 	char fileName[40];

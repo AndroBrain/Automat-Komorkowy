@@ -1,1 +1,1 @@
-void createPbmFile( matrix_t *mat, int number );
+void savePbmFile( matrix_t *mat, int number );

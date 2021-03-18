@@ -1,18 +1,7 @@
 #include <stdlib.h>
 
 #include "mat.h"
-//przerzucic breedandkilla do innego folderu i nazwac game of life 
-void breedAndKill( matrix_t *mat, int row, int column, int alive) {
-	int actualState = get_entry_matrix( mat, row, column );
-
-	if( actualState == 0 )
-		if( alive == 3 )
-			put_entry_matrix( mat, row, column, 3);
-
-	if( actualState == 1 )
-		if( alive != 2 && alive != 3 )
-			put_entry_matrix( mat, row, column, 2);
-}
+#include "games.h"
 
 int isAlive( int state ){
 	if( state == 1 || state == 2) {
