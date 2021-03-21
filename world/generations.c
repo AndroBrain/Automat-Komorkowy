@@ -41,4 +41,5 @@ void makeAutomata ( char *fileName, int numberOfIterations ) {
 	}
 	save( mat, numberOfIterations );
 	free_matrix(mat);
+	fprintf( stdout, "Program finished successfully\nGenerated file last.txt where position from last iteration is saved\n" );
 }

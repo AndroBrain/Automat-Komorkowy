@@ -16,7 +16,13 @@ int main(int argc, char **argv) {
 
 	int numberOfIterations = atoi(argv[2]);
 	char *fileName = argv[1];
-	
+
+	if ( numberOfIterations < 1 ) { 
+		fprintf( stderr, "The number of iterations must be bigger than 0\n" );
+		displayErrorMessage();
+		return 2;
+	}
+
 	makeAutomata( fileName, numberOfIterations );
 
 	return 0;
