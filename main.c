@@ -19,7 +19,6 @@ int main(int argc, char **argv) {
 
 	if ( numberOfIterations < 1 ) { 
 		fprintf( stderr, "The number of iterations must be bigger than 0\n" );
-		displayErrorMessage();
 		return 2;
 	}
 
