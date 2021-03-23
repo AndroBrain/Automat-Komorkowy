@@ -12,6 +12,7 @@ int isAlive( int state ){
 
 void moor(matrix_t *mat, int row, int column){
 	int alive = 0;
+	int timesRun = 0;
 	for ( int r = row - 1; r <= row + 1; r++ )
 		for ( int c = column - 1; c <= column + 1; c++)
 			if ( r >= 0 && r < mat->rn && c >= 0 && c < mat->cn && ( r != row || c != column))

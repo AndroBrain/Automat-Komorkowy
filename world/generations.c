@@ -48,9 +48,9 @@ void makeAutomata ( char *fileName, int numberOfIterations ) {
 		
 		for ( int r = 0; r < mat->rn; r++ )
 			for ( int c = 0; c < mat->cn; c++ ) {
-#ifdef NEUMANN	
+#ifdef NEUMANN
 				neumann( mat, r, c );
-				printf("HI");
+				fprintf(stdout, "HI");
 #else
 				moor( mat, r, c );
 #endif
