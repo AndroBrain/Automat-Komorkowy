@@ -10,4 +10,5 @@ void savePbmFile( matrix_t *mat, int number ){
 	fprintf( out, "P1\n" );
 
 	save_matrix( mat, out, 2 );
+	fclose(out);
 }
