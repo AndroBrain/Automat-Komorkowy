@@ -12,4 +12,5 @@ void breedAndKill( matrix_t *mat, int row, int column, int alive) {
 	if( actualState == 1 )
 		if( alive != 2 && alive != 3 )
 			put_entry_matrix( mat, row, column, 2);
+		
 }

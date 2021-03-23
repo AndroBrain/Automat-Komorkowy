@@ -1,8 +1,8 @@
 moor: mat.o saveMat.o savePbmFile.o output.o gameOfLife.o neighbourhood.o generations.o gifenc.o
 	gcc mat.o saveMat.o savePbmFile.o output.o gameOfLife.o neighbourhood.o generations.o gifenc.o -o moor main.c
 
-neumann: mat.o saveMat.o savePbmFile.o output.o gameOfLife.o neighbourhood.o generations.o
-	gcc mat.o saveMat.o savePbmFile.o output.o gameOfLife.o neighbourhood.o generations.o -o neumann main.c -DNEUMANN
+neumann: mat.o saveMat.o savePbmFile.o output.o gameOfLife.o neighbourhood.o generations.o gifenc.o
+	gcc mat.o saveMat.o savePbmFile.o output.o gameOfLife.o neighbourhood.o generations.o gifenc.o -o neumann main.c -DNEUMANN
 
 generations.o: mat.o neighbourhood.o output.o gifenc.o
 	$(CC) -c world/generations.c

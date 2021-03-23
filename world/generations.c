@@ -32,7 +32,7 @@ void makeAutomata ( char *fileName, int numberOfIterations ) {
 
 	ge_GIF *gif = ge_new_gif(
 		"iterations.gif",
-		mat->rn, mat->cn,
+		mat->cn, mat->rn,
 		(uint8_t []) {
             0x00, 0x00, 0x00, /* 0 -> black */
             0xFF, 0x00, 0x00, /* 1 -> red */
@@ -44,11 +44,13 @@ void makeAutomata ( char *fileName, int numberOfIterations ) {
 
 	for( int n = 1; n <= numberOfIterations; n++ ){
 		save( mat, n );
+		saveGif( mat, gif);
 		
 		for ( int r = 0; r < mat->rn; r++ )
 			for ( int c = 0; c < mat->cn; c++ ) {
 #ifdef NEUMANN	
 				neumann( mat, r, c );
+				printf("HI");
 #else
 				moor( mat, r, c );
 #endif
@@ -56,6 +58,8 @@ void makeAutomata ( char *fileName, int numberOfIterations ) {
 		fix_world( mat );
 	}
 	save( mat, numberOfIterations );
+	saveGif( mat, gif);
+
 	saveLastIteration( mat );
 
 	ge_close_gif(gif);

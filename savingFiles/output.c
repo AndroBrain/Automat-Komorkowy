@@ -14,8 +14,8 @@ void save(matrix_t *mat, int numberOfIterations){
 }
 
 void saveGif(matrix_t *mat, ge_GIF *gif) {
-	for(int i = 0; i < mat->rn; i++)
-		for(int j = 0; j < mat->cn; j++)
-			gif->frame[mat->cn
-
+	for(int r = 0; r < mat->rn; r++)
+		for(int c = 0; c < mat->cn; c++)
+			gif->frame[mat->cn * r + c] = get_entry_matrix(mat, r, c);	
+	ge_add_frame(gif,10);
 }
