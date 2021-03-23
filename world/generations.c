@@ -1,5 +1,6 @@
 #include "mat.h"
 #include "neighbourhood.h"
+#include "../gifMaker/gifenc.h"
 #include "../savingFiles/output.h"
 
 void handleFileError() {
@@ -24,11 +25,26 @@ void makeAutomata ( char *fileName, int numberOfIterations ) {
 
 	matrix_t *mat = read_matrix( in );
 
-	if ( mat == NULL ) 
+	if ( mat == NULL ) {
 		handleFileError();
+		fclose(in);
+	}
+
+	ge_GIF *gif = ge_new_gif(
+		"iterations.gif",
+		mat->rn, mat->cn,
+		(uint8_t []) {
+            0x00, 0x00, 0x00, /* 0 -> black */
+            0xFF, 0x00, 0x00, /* 1 -> red */
+            0x00, 0xFF, 0x00, /* 2 -> green */
+            0x00, 0x00, 0xFF, /* 3 -> blue */
+		},
+		2, 0
+		);
 
 	for( int n = 1; n <= numberOfIterations; n++ ){
 		save( mat, n );
+		
 		for ( int r = 0; r < mat->rn; r++ )
 			for ( int c = 0; c < mat->cn; c++ ) {
 #ifdef NEUMANN	
@@ -40,6 +56,10 @@ void makeAutomata ( char *fileName, int numberOfIterations ) {
 		fix_world( mat );
 	}
 	save( mat, numberOfIterations );
+	saveLastIteration( mat );
+
+	ge_close_gif(gif);
+
 	free_matrix(mat);
 	fclose(in);
 	fprintf( stdout, "Program finished successfully\nGenerated file last.txt where position from last iteration is saved\n" );
