@@ -1,6 +1,6 @@
 #include "mat.h"
 #include "neighbourhood.h"
-#include "../gifMaker/gifenc.h"
+#include "../savingFiles/gifMaker/gifenc.h"
 #include "../savingFiles/output.h"
 
 void handleFileError() {
@@ -50,7 +50,6 @@ void makeAutomata ( char *fileName, int numberOfIterations ) {
 			for ( int c = 0; c < mat->cn; c++ ) {
 #ifdef NEUMANN
 				neumann( mat, r, c );
-				fprintf(stdout, "HI");
 #else
 				moor( mat, r, c );
 #endif
@@ -67,4 +66,5 @@ void makeAutomata ( char *fileName, int numberOfIterations ) {
 	free_matrix(mat);
 	fclose(in);
 	fprintf( stdout, "Program finished successfully\nGenerated file last.txt where position from last iteration is saved\n" );
+	fprintf( stdout, "Generated file iterations.gif with animation of the game\n");
 }
